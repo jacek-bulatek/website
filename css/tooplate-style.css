@@ -53,8 +53,8 @@ a:focus {
 	outline: none;
 }
 
-.tm-section-margin-t { margin-top: 200px; }
-.tm-section-margin-t-small { margin-top: 150px; }
+.tm-section-margin-t { margin-top: -150px; }
+.tm-section-margin-t-small { margin-top: -50px; }
 
 .cd-hero-slider li:first-of-type,
 .cd-hero-slider li:nth-of-type(2),
