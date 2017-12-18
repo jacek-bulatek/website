@@ -1,26 +1,70 @@
 $(document).ready(function(){
 //Canvas stuff
-var canvas = $("#canvas")[0];
+var canvas = document.getElementById('canvas');
+var canvasX = canvas.offsetLeft;
+var canvasY = canvas.offsetTop;
 var ctx = canvas.getContext("2d");
 var screenWidth;
 var screenHeight;
+var startActivityElements = [];
+
+//var Activity  = {StartActivity, LevelOneActivity, LevelTwoActivity, LevelThreeActivity};
+//var activity = Activity.StartActivity;
 
 init();
+initStartActivity();
+//draw();
+/*
+canvas.addEventListener('click', function(event) {
+    var x = event.pageX - canvasX,
+        y = event.pageY - canvasY;
 
-var Activity  = {StartActivity, LevelOneActivity, LevelTwoActivity, LevelThreeActivity};
+    // Collision detection between clicked offset and element.
+    startActivityElements.forEach(function(element) {
+        if (y > element.Y && y < element.Y + element.height 
+            && x > element.X && x < element.X + element.width) {
+            onClick(element.name);
+        }
+    });
 
-
+}, false);
+*/
 function init(){
 	var canvasContainer = document.getElementById('canvasContainer');
 	var cs = getComputedStyle(canvasContainer);	
 	canvas.width = parseInt(cs.getPropertyValue('width'), 10) - 20;
 	canvas.height = parseInt(cs.getPropertyValue('height'), 10);
-	screenWidth = $("#canvas").width();
-	screenHeight = $("#canvas").height();
+	screenWidth = canvas.width;
+	screenHeight = canvas.height;
 	ctx.fillStyle = "white";
 	ctx.fillRect(0, 0, screenWidth, screenHeight);
 	ctx.strokeStyle = "black";
 	ctx.strokeRect(0, 0, screenWidth, screenHeight);
+}
+
+function draw(){
+	// case Activity
+}
+
+function initStartActivity(){
+	var startButton = new Image();
+	startButton.src = 'file:///J:/projects/10000dollarsgame/website/img/buttonStart.png';
+	var startButtonWidth = screenWidth * 0.2;
+	var startButtonHeight = screenHeight * 0.2;
+	var startButtonX = screenWidth/2 - startButtonWidth/2;
+	var startButtonY = screenHeight/2 - startButtonHeight/2;
+	startActivityElements.push({
+		name: 'startButton',
+		width: startButtonWidth,
+		height: startButtonHeight,
+		Y: startButtonY,
+		X: startButtonX,
+	});
+	ctx.drawImage(startButton, startButtonX, startButtonY, startButtonWidth, startButtonHeight);
+}
+
+function onClick(name){
+	alert(name);
 }
 
 })
